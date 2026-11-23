@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Élan · Routine & Objectifs</title>
+<meta name="description" content="Élan réunit ta routine quotidienne et tes objectifs dans une seule appli : tableau de bord, calendrier, minuteur focus, succès.">
+<meta name="theme-color" content="#f5f1e8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Élan">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/shell.css">
+<link rel="stylesheet" href="css/routine.css">
+<link rel="stylesheet" href="css/objectifs.css">
+<link rel="stylesheet" href="css/views.css">
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a class="brand" href="#/home" aria-label="Élan, accueil">
+    <svg viewBox="0 0 48 48" class="logo" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a36"/><stop offset=".55" stop-color="#ec4899"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs><rect width="48" height="48" rx="14" fill="url(#lg)"/><circle cx="24" cy="24" r="11" fill="none" stroke="#fff" stroke-width="3.2" opacity=".55"/><path d="M17.5 24.5l4.6 4.6 8.6-10" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <b>Élan</b>
+  </a>
+  <span class="sp"></span>
+  <button class="lvl" id="lvlchip" type="button" aria-label="Niveau et expérience"><span class="lvl-n" id="lvlN">Niv. 1</span><i class="lvl-bar"><b id="lvlBar"></b></i></button>
+  <button class="tbtn" id="themeBtn" type="button" aria-label="Changer de thème"></button>
+</header>
+
+<main id="views">
+
+  <section class="view xv" id="view-home" data-view="home" hidden></section>
+
+  <!-- ===================== ROUTINE (ex « Everyday ») ===================== -->
+  <section class="view" id="view-routine" data-view="routine" hidden>
+    <div class="r-subnav"><div class="in" id="r-nav"></div></div>
+    <div class="wrap" id="r-app"></div>
+    <button class="fab" id="r-fab" data-act="new" aria-label="Ajouter une tâche">+</button>
+    <input type="file" id="r-file" accept="application/json" hidden>
+  </section>
+
+  <!-- ===================== OBJECTIFS (ex « Mes objectifs ») ===================== -->
+  <section class="view" id="view-objectifs" data-view="objectifs" hidden>
+    <header class="top">
+      <div class="wrap">
+        <div class="hrow">
+          <div class="ttlbox"><h1>Mes objectifs</h1><p id="o-sub"></p></div>
+          <button class="iconbtn" data-a="theme" id="o-themebtn">Sombre</button>
+          <button class="iconbtn" data-a="settings">Réglages</button>
+        </div>
+        <div class="prog"><i id="o-pbar"></i></div>
+        <div class="tools" id="o-tools">
+          <input class="search" id="o-q" type="search" placeholder="Rechercher" autocomplete="off">
+          <button class="chip on" data-f="all">Tous</button>
+          <button class="chip" data-f="urgent">Urgents</button>
+          <button class="chip" data-f="h">Haute</button>
+          <button class="chip" data-f="m">Moyenne</button>
+          <button class="chip" data-f="l">Basse</button>
+          <button class="chip" data-a="hidedone" id="o-hidedone">Masquer terminés</button>
+          <select class="chip" id="o-sort" aria-label="Tri"><option value="prio">Tri : priorité</option><option value="date">Tri : échéance</option></select>
+        </div>
+        <div class="tools-b"></div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <div id="o-alert"></div>
+      <div id="o-app"></div>
+    </main>
+
+    <div class="fab"><button data-a="addgoal"><b>+</b> Objectif</button></div>
+
+    <dialog id="o-dGoal"><form class="dlg" id="o-fGoal" method="dialog"></form></dialog>
+    <dialog id="o-dCat"><form class="dlg" id="o-fCat" method="dialog"></form></dialog>
+    <dialog id="o-dSet"><div class="dlg" id="o-setBox"></div></dialog>
+    <input type="file" id="o-file" accept="application/json" hidden>
+  </section>
+
+  <section class="view xv" id="view-calendar" data-view="calendar" hidden></section>
+  <section class="view xv" id="view-focus" data-view="focus" hidden></section>
+</main>
+
+<nav class="dock" id="dock" aria-label="Navigation principale"></nav>
+<div id="hub-toast" role="status" aria-live="polite"></div>
+<input type="file" id="hub-file" accept="application/json" hidden>
+
+<script src="js/hub.js"></script>
+<script src="js/routine.js"></script>
+<script src="js/objectifs.js"></script>
+<script src="js/gamify.js"></script>
+<script src="js/home.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/focus.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
